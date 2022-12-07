@@ -7,10 +7,15 @@ import (
 	"strings"
 )
 
+/// part 1
 // split de cada linha na metade
 // encontrar qual letra se repete
 // a-z vai de 1 a 26
 // A-Z vai de 27  a 52
+
+/// part 2
+// identificar cada grupo a cada tres linhas
+// pegar o char que se repete nas 3 linhas de cada grupo
 
 var priorities = map[string]int{}
 
@@ -25,7 +30,7 @@ func main() {
 		priorities[ASCIIIntToChar('A'+i)] = i + 27
 	}
 
-	readFile, err := os.Open("file.txt")
+	readFile, err := os.Open("test-file.txt")
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -37,8 +42,15 @@ func main() {
 	fileScanner.Split(bufio.ScanLines)
 
 	result := 0
+	var group map[int]string
+
 	for fileScanner.Scan() {
-		result += splitHands(fileScanner.Text())
+		counter := 0
+		for i := 0; i < counter; i++ {
+
+			fmt.Println(group)
+			fmt.Println(fileScanner)
+		}
 	}
 
 	fmt.Println(result)
