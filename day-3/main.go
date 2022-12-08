@@ -41,34 +41,31 @@ func main() {
 
 	fileScanner.Split(bufio.ScanLines)
 
-	// result := 0
-	var group []string
-	// value := 0
+	var sacks []string
 	for fileScanner.Scan() {
-		if len(group) == 3 {
-			fmt.Println("exiting from the loop")
-			// var word string
-			var temp []string
-			for i := 0; i < 3; i++ {
-				temp = append(temp, group...)
-				// fmt.Println(temp)
-				for _, char := range temp {
-					fmt.Println(char)
-					// if word == char {
-					// 	fmt.Println("found the char equal: ", char)
-					// }
-				}
-			}
-			group = nil
-
-		} else {
-			group = append(group, fileScanner.Text())
-			// fmt.Println(group)
-		}
-
+		sacks = append(sacks, fileScanner.Text())
 	}
-	// fmt.Println(result)
 
+	prioritiesSum := 0
+	for i := 0; i < len(sacks); i += 3 {
+		set2, set3 := stringToSet(sacks[i+1]), stringToSet(sacks[i+2])
+		for _, char := range strings.Split(sacks[i], "") {
+			if set2[char] && set3[char] {
+				prioritiesSum += priorities[char]
+				break
+			}
+		}
+	}
+	fmt.Println(prioritiesSum)
+
+}
+
+func stringToSet(s string) map[string]bool {
+	set := map[string]bool{}
+	for _, char := range strings.Split(s, "") {
+		set[char] = true
+	}
+	return set
 }
 
 func splitHands(text string) int {
