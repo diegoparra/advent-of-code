@@ -41,19 +41,33 @@ func main() {
 
 	fileScanner.Split(bufio.ScanLines)
 
-	result := 0
-	var group map[int]string
-
+	// result := 0
+	var group []string
+	// value := 0
 	for fileScanner.Scan() {
-		counter := 0
-		for i := 0; i < counter; i++ {
+		if len(group) == 3 {
+			fmt.Println("exiting from the loop")
+			// var word string
+			var temp []string
+			for i := 0; i < 3; i++ {
+				temp = append(temp, group...)
+				// fmt.Println(temp)
+				for _, char := range temp {
+					fmt.Println(char)
+					// if word == char {
+					// 	fmt.Println("found the char equal: ", char)
+					// }
+				}
+			}
+			group = nil
 
-			fmt.Println(group)
-			fmt.Println(fileScanner)
+		} else {
+			group = append(group, fileScanner.Text())
+			// fmt.Println(group)
 		}
-	}
 
-	fmt.Println(result)
+	}
+	// fmt.Println(result)
 
 }
 
