@@ -30,7 +30,7 @@ func main() {
 		priorities[ASCIIIntToChar('A'+i)] = i + 27
 	}
 
-	readFile, err := os.Open("test-file.txt")
+	readFile, err := os.Open("file.txt")
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -57,7 +57,6 @@ func main() {
 		}
 	}
 	fmt.Println(prioritiesSum)
-
 }
 
 func stringToSet(s string) map[string]bool {
